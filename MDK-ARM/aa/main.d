@@ -29,10 +29,12 @@ aa\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h
 aa\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h
 aa\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
 aa\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h
+aa\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 aa\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pcd.h
 aa\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usb.h
 aa\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pcd_ex.h
 aa\main.o: ../Core/Inc/spi.h
+aa\main.o: ../Core/Inc/usart.h
 aa\main.o: ../USB_DEVICE/App/usb_device.h
 aa\main.o: ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h
 aa\main.o: ../USB_DEVICE/Target/usbd_conf.h
@@ -40,3 +42,8 @@ aa\main.o: D:\Keil_v5_28\ARM\ARMCC\Bin\..\include\stdio.h
 aa\main.o: D:\Keil_v5_28\ARM\ARMCC\Bin\..\include\stdlib.h
 aa\main.o: D:\Keil_v5_28\ARM\ARMCC\Bin\..\include\string.h
 aa\main.o: ../Core/Inc/gpio.h
+aa\main.o: ..\sfud\inc\sfud.h
+aa\main.o: ..\sfud\inc\sfud_def.h
+aa\main.o: D:\Keil_v5_28\ARM\ARMCC\Bin\..\include\stdbool.h
+aa\main.o: ..\sfud\inc\sfud_cfg.h
+aa\main.o: ..\sfud\inc\sfud_flash_def.h

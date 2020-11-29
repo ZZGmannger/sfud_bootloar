@@ -20,12 +20,13 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "spi.h"
+#include "usart.h"
 #include "usb_device.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include <sfud.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -56,7 +57,27 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+#define SECTOR_SIZE   (4*1024) 
+  
+#define SECTOR0_ADDR    (0*SECTOR_SIZE)
+#define SECTOR1_ADDR    (1*SECTOR_SIZE) 
+#define SECTOR2_ADDR    (2*SECTOR_SIZE)
+#define SECTOR3_ADDR    (3*SECTOR_SIZE)
+#define SECTOR4_ADDR    (4*SECTOR_SIZE)
+#define SECTOR5_ADDR    (5*SECTOR_SIZE)
+#define SECTOR6_ADDR    (6*SECTOR_SIZE)
+#define SECTOR7_ADDR    (7*SECTOR_SIZE)
+#define SECTOR8_ADDR    (8*SECTOR_SIZE)
 
+
+#define SECTOR_ADDR(x)  (x*SECTOR_SIZE)
+
+
+#define TEST_SECTOR_ADDR     (SECTOR0_ADDR)
+#define TEST_SECTOR_SIZE     (8*SECTOR_SIZE)
+
+uint8_t read[TEST_SECTOR_SIZE];
+uint8_t write[TEST_SECTOR_SIZE];
 /* USER CODE END 0 */
 
 /**
@@ -89,7 +110,44 @@ int main(void)
   MX_GPIO_Init();
   MX_SPI1_Init();
   MX_USB_DEVICE_Init();
+  MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
+
+	
+    sfud_init();
+	HAL_Delay(500); 
+    const sfud_flash *flash = sfud_get_device_table();
+//   if(sfud_erase(flash,TEST_SECTOR_ADDR,TEST_SECTOR_SIZE)== SFUD_SUCCESS)
+//   {
+//		printf("=========>erase ok\r\n");
+//   }
+
+    /* erase test */
+    //result = sfud_erase(flash, 0, 64*1024*16);
+    /* write test */
+	
+//    for(uint16_t i=0;i<1024*4;i++)
+//	{
+//		write[i] = i;
+//	}
+//   if(sfud_write(flash, 0, sizeof(write),write)== SFUD_SUCCESS)
+//   {
+//   
+//   }
+//   if(sfud_read(flash, TEST_SECTOR_ADDR, TEST_SECTOR_SIZE, (uint8_t*)read) == SFUD_SUCCESS)
+//   {
+//       uint32_t line=0;
+//	   for(line = 0;line<(TEST_SECTOR_SIZE/32);line++)
+//	   {
+//		   printf("line%4d: ",line);
+//		   for(uint8_t i=0;i<32;i++)
+//		   {
+//			   printf("%02X ",(uint8_t)read[line*32+i]);
+//		   }
+//		   printf("\r\n");
+//	   }
+//   }
+    /* read test */
 
   /* USER CODE END 2 */
 

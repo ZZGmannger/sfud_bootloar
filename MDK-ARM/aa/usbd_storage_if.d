@@ -37,6 +37,7 @@ aa\usbd_storage_if.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ra
 aa\usbd_storage_if.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h
 aa\usbd_storage_if.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
 aa\usbd_storage_if.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h
+aa\usbd_storage_if.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 aa\usbd_storage_if.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pcd.h
 aa\usbd_storage_if.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usb.h
 aa\usbd_storage_if.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pcd_ex.h
@@ -45,3 +46,8 @@ aa\usbd_storage_if.o: ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_i
 aa\usbd_storage_if.o: ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h
 aa\usbd_storage_if.o: ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h
 aa\usbd_storage_if.o: ../Middlewares/ST/STM32_USB_Device_Library/Class/MSC/Inc/usbd_msc_scsi.h
+aa\usbd_storage_if.o: ..\sfud\inc\sfud.h
+aa\usbd_storage_if.o: ..\sfud\inc\sfud_def.h
+aa\usbd_storage_if.o: D:\Keil_v5_28\ARM\ARMCC\Bin\..\include\stdbool.h
+aa\usbd_storage_if.o: ..\sfud\inc\sfud_cfg.h
+aa\usbd_storage_if.o: ..\sfud\inc\sfud_flash_def.h
