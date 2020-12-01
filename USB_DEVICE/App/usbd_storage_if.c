@@ -64,11 +64,11 @@
   */
 
 #define STORAGE_LUN_NBR                  1
-#define STORAGE_BLK_NBR                  ((1024*1024)/STORAGE_BLK_SIZ)
+#define STORAGE_BLK_NBR                  ((2*1024*1024)/STORAGE_BLK_SIZ)
 #define STORAGE_BLK_SIZ                  0x200
 
 /* USER CODE BEGIN PRIVATE_DEFINES */
-#define SPI_BLK_SIZE    (512)
+uint8_t ram[16*STORAGE_BLK_SIZ];
 /* USER CODE END PRIVATE_DEFINES */
 
 /**
@@ -178,7 +178,7 @@ USBD_StorageTypeDef USBD_Storage_Interface_fops_FS =
 int8_t STORAGE_Init_FS(uint8_t lun)
 {
   /* USER CODE BEGIN 2 */
- // sfud_init();
+  //sfud_init();
   return (USBD_OK);
   /* USER CODE END 2 */
 }
@@ -231,17 +231,17 @@ int8_t STORAGE_IsWriteProtected_FS(uint8_t lun)
 int8_t STORAGE_Read_FS(uint8_t lun, uint8_t *buf, uint32_t blk_addr, uint16_t blk_len)
 {
   /* USER CODE BEGIN 6 */
+	//printf("read:: blk_addr:%d ,blk_len:%d\r\n" ,blk_addr ,blk_len);
 	const sfud_flash *flash = sfud_get_device_table();
-	uint8_t sfud_ret = sfud_read(flash, blk_addr*SPI_BLK_SIZE, blk_len*SPI_BLK_SIZE, buf);
+	uint8_t sfud_ret = sfud_read(flash, blk_addr*STORAGE_BLK_SIZ, blk_len*STORAGE_BLK_SIZ, ram);
+
+	for(uint32_t i=0;i<(blk_len*STORAGE_BLK_SIZ);i++)
+	{
+		ram[i] = ~ram[i];
+	}
 	
-	for(uint32_t i=0;i<blk_len*SPI_BLK_SIZE;i++)
-	{
-		*buf = ~(*buf);
-	}
-	if(sfud_ret)
-	{
-		printf("read error");
-	}
+    memcpy(buf,&ram,blk_len*STORAGE_BLK_SIZ);
+
     return (USBD_OK);
   /* USER CODE END 6 */
 }
@@ -254,20 +254,19 @@ int8_t STORAGE_Read_FS(uint8_t lun, uint8_t *buf, uint32_t blk_addr, uint16_t bl
 int8_t STORAGE_Write_FS(uint8_t lun, uint8_t *buf, uint32_t blk_addr, uint16_t blk_len)
 {
   /* USER CODE BEGIN 7 */
+	//printf("write:: blk_addr:%d ,blk_len:%d\r\n" ,blk_addr ,blk_len);
 	const sfud_flash *flash = sfud_get_device_table();
 	
-	for(uint32_t i=0;i<blk_len*SPI_BLK_SIZE;i++)
-	{
-		*buf = ~(*buf);
-	}
-	uint8_t sfud_ret = sfud_write(flash, blk_addr*SPI_BLK_SIZE, blk_len*SPI_BLK_SIZE, buf);
+	memcpy(ram , buf , blk_len*STORAGE_BLK_SIZ);
 	
-//	printf("---------------------------->%d,%d\r\n",blk_addr,blk_len);
-	if(sfud_ret)
+	
+	for(uint32_t i=0;i<(blk_len*STORAGE_BLK_SIZ);i++)
 	{
-		printf("write error");
+		ram[i] = ~ram[i];
 	}
-  return (USBD_OK);
+	
+	sfud_erase_write(flash, blk_addr*STORAGE_BLK_SIZ, blk_len*STORAGE_BLK_SIZ, ram);
+	return (USBD_OK);
   /* USER CODE END 7 */
 }
 

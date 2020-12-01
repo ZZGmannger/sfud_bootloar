@@ -123,7 +123,7 @@ int main(void)
 //   }
 
     /* erase test */
-    //result = sfud_erase(flash, 0, 64*1024*16);
+    //sfud_chip_erase(flash);
     /* write test */
 	
 //    for(uint16_t i=0;i<1024*4;i++)
